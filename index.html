@@ -382,6 +382,86 @@
       .hero-bg-layer {
         will-change: transform;
       }
+
+      /* ===== Mobile slide-in menu (Google-Sites-style left drawer) ===== */
+      .mobile-menu-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+      }
+      .mobile-menu-overlay.hidden {
+        display: none;
+      }
+      .mobile-menu-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .mobile-menu-overlay.open .mobile-menu-backdrop {
+        opacity: 1;
+      }
+      .mobile-menu-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(80vw, 320px);
+        background: var(--panel);
+        border-right: 1px solid var(--line);
+        transform: translateX(-100%);
+        transition: transform 0.35s cubic-bezier(0.16, 0.84, 0.32, 1);
+        padding: 1.5rem 1.75rem 2rem;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .mobile-menu-overlay.open .mobile-menu-panel {
+        transform: translateX(0);
+      }
+      .mobile-menu-close {
+        align-self: flex-start;
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: var(--panel-2);
+        border: 1px solid var(--line);
+        color: var(--ink);
+        font-size: 1.1rem;
+        margin-bottom: 2.75rem;
+        transition:
+          border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .mobile-menu-close:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .mobile-menu-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.85rem;
+      }
+      .mobile-menu-link {
+        font-family: "JetBrains Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 1.0625rem;
+        color: var(--ink-dim);
+        transition: color 0.2s ease;
+        text-align: left;
+      }
+      .mobile-menu-link:hover,
+      .mobile-menu-link.active {
+        color: var(--accent);
+      }
+      .mobile-menu-cta {
+        margin-top: auto;
+        padding-top: 2.5rem;
+      }
     </style>
   </head>
 
@@ -439,44 +519,37 @@
           </button>
         </div>
       </nav>
-
-      <!-- mobile menu -->
-      <div
-        id="mobileMenu"
-        class="hidden mx-4 mt-2 bg-[#0E1013] border border-[var(--line)] rounded-2xl p-5 text-center space-y-1 shadow-2xl"
-      >
-        <a
-          href="#about"
-          class="block py-3 font-mono uppercase text-sm tracking-wide text-[var(--ink-dim)] hover:text-[var(--ink)] border-b border-[var(--line)]"
-          >About</a
-        >
-        <a
-          href="#skills"
-          class="block py-3 font-mono uppercase text-sm tracking-wide text-[var(--ink-dim)] hover:text-[var(--ink)] border-b border-[var(--line)]"
-          >Skills</a
-        >
-        <a
-          href="#reel"
-          class="block py-3 font-mono uppercase text-sm tracking-wide text-[var(--ink-dim)] hover:text-[var(--ink)] border-b border-[var(--line)]"
-          >Reel</a
-        >
-        <a
-          href="#projects"
-          class="block py-3 font-mono uppercase text-sm tracking-wide text-[var(--ink-dim)] hover:text-[var(--ink)] border-b border-[var(--line)]"
-          >Work</a
-        >
-        <a
-          href="#contact"
-          class="block py-3 font-mono uppercase text-sm tracking-wide text-[var(--accent)]"
-          >Contact</a
-        >
-        <a
-          href="#contact"
-          class="block mt-3 btn-primary text-xs uppercase tracking-wider px-5 py-3 rounded-full"
-          >Hire Me</a
-        >
-      </div>
     </header>
+
+    <!-- mobile slide-in menu -->
+    <div id="mobileMenuOverlay" class="mobile-menu-overlay hidden">
+      <div id="mobileMenuBackdrop" class="mobile-menu-backdrop"></div>
+      <div class="mobile-menu-panel">
+        <button
+          id="menuCloseBtn"
+          class="mobile-menu-close"
+          aria-label="Close menu"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <nav class="mobile-menu-links">
+          <a href="#home" class="mobile-menu-link active">Home</a>
+          <a href="#about" class="mobile-menu-link">About</a>
+          <a href="#skills" class="mobile-menu-link">Skills</a>
+          <a href="#reel" class="mobile-menu-link">Reel</a>
+          <a href="#projects" class="mobile-menu-link">Work</a>
+          <a href="#contact" class="mobile-menu-link">Contact</a>
+        </nav>
+
+        <a
+          href="#contact"
+          class="mobile-menu-cta btn-primary text-xs uppercase tracking-wider px-5 py-3 rounded-full text-center"
+        >
+          Hire Me
+        </a>
+      </div>
+    </div>
 
     <!-- ================= HERO ================= -->
     <section
@@ -1435,26 +1508,46 @@
       setInterval(tickClock, 40);
       tickClock();
 
-      // mobile menu
+      // mobile slide-in menu
       const menuBtn = document.getElementById("menuBtn");
-      const menuIcon = document.getElementById("menuIcon");
-      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
+      const mobileMenuBackdrop = document.getElementById("mobileMenuBackdrop");
+      const menuCloseBtn = document.getElementById("menuCloseBtn");
 
-      menuBtn.addEventListener("click", () => {
-        const isHidden = mobileMenu.classList.contains("hidden");
-        mobileMenu.classList.toggle("hidden");
-        menuIcon.className = isHidden
-          ? "fa-solid fa-xmark"
-          : "fa-solid fa-bars";
-        menuBtn.setAttribute("aria-expanded", String(isHidden));
+      function openMobileMenu() {
+        mobileMenuOverlay.classList.remove("hidden");
+        // next frame so the transform transition actually runs
+        requestAnimationFrame(() => {
+          mobileMenuOverlay.classList.add("open");
+        });
+        document.body.style.overflow = "hidden";
+        menuBtn.setAttribute("aria-expanded", "true");
+      }
+
+      function closeMobileMenu() {
+        mobileMenuOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+        menuBtn.setAttribute("aria-expanded", "false");
+        // wait for the slide-out transition before hiding it
+        setTimeout(() => {
+          if (!mobileMenuOverlay.classList.contains("open")) {
+            mobileMenuOverlay.classList.add("hidden");
+          }
+        }, 350);
+      }
+
+      menuBtn.addEventListener("click", openMobileMenu);
+      menuCloseBtn.addEventListener("click", closeMobileMenu);
+      mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
+
+      document.querySelectorAll(".mobile-menu-link, .mobile-menu-cta").forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
       });
 
-      document.querySelectorAll("#mobileMenu a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          menuIcon.className = "fa-solid fa-bars";
-          menuBtn.setAttribute("aria-expanded", "false");
-        });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileMenuOverlay.classList.contains("open")) {
+          closeMobileMenu();
+        }
       });
 
       // show more projects
