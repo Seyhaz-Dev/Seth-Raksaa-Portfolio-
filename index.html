@@ -708,7 +708,8 @@
 
     .hidden-photo.hidden,
     .hidden-design.hidden,
-    .project-item.hidden {
+    .project-item.hidden,
+    .documentary-item.hidden {
       display: none !important;
     }
   </style>
@@ -1230,12 +1231,71 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <article class="reveal-stagger portfolio-card">
+       
+         <article class="reveal-stagger portfolio-card">
 
           <div class="frame aspect-video">
 
             <span class="portfolio-badge">
-              TVC
+              Year 1
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/tvc.png">
+
+              <source src="./image/TVCwatch.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              WATCH
+            </h3>
+
+            <p class="portfolio-desc">
+              Re-editor
+            </p>
+
+          </div>
+
+        </article>
+         <article class="reveal-stagger portfolio-card">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Year 1
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/tvc.png">
+
+              <source src="./image/TVCKRUD.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              KRUD
+            </h3>
+
+            <p class="portfolio-desc">
+              Re-editor
+            </p>
+
+          </div>
+
+        </article>
+         <article class="reveal-stagger portfolio-card">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Year 2
             </span>
 
             <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/tvc.png">
@@ -1326,7 +1386,7 @@
               Year 1
             </span>
 
-            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/Khmer traditional musical instruments 2.jpg">
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/Khmer%20traditional%20musical%20instruments%202.jpg">
 
               <source src="./image/KHMERINSTRUMENT.mp4" type="video/mp4" />
 
@@ -1356,7 +1416,7 @@
               Year 2
             </span>
 
-            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/the power of love 2 poster.jpg">
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/the%20power%20of%20love%202%20poster.jpg">
 
               <source src="./image/THEPOWEROFLOVE.mp4" type="video/mp4" />
 
@@ -1417,68 +1477,7 @@
         </article>
 
 
-        <!-- Project 5 hidden -->
-        <article class="project-item reveal-stagger portfolio-card hidden">
-
-          <div class="frame aspect-video">
-
-            <span class="portfolio-badge">
-              Year 2
-            </span>
-
-            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short5.png">
-
-              <source src="./image/short5.mp4" type="video/mp4" />
-
-            </video>
-
-          </div>
-
-          <div class="portfolio-body">
-
-            <h3 class="portfolio-title">
-              Short Film 05
-            </h3>
-
-            <p class="portfolio-desc">
-              Video Editing
-            </p>
-
-          </div>
-
-        </article>
-
-
-        <!-- Project 6 hidden -->
-        <article class="project-item reveal-stagger portfolio-card hidden">
-
-          <div class="frame aspect-video">
-
-            <span class="portfolio-badge">
-              Short Film
-            </span>
-
-            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short6.png">
-
-              <source src="./image/short6.mp4" type="video/mp4" />
-
-            </video>
-
-          </div>
-
-          <div class="portfolio-body">
-
-            <h3 class="portfolio-title">
-              Short Film 06
-            </h3>
-
-            <p class="portfolio-desc">
-              Video Editing
-            </p>
-
-          </div>
-
-        </article>
+      
 
       </div>
 
@@ -1487,7 +1486,7 @@
 
       <div class="text-center mt-12">
 
-        <button id="showMoreBtn" type="button"
+        <button id="showMoreShortFilmBtn" type="button"
           class="show-more-btn btn-ghost px-8 py-3.5 rounded-full text-sm uppercase tracking-wider font-mono">
 
           Show More
@@ -1519,7 +1518,7 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <article class="reveal-stagger portfolio-card">
+        <article class="documentary-item reveal-stagger portfolio-card">
 
           <div class="frame aspect-video">
 
@@ -1548,7 +1547,7 @@
           </div>
 
         </article>
-         <article class="reveal-stagger portfolio-card">
+         <article class="documentary-item reveal-stagger portfolio-card">
 
           <div class="frame aspect-video">
 
@@ -1577,7 +1576,7 @@
           </div>
 
         </article>
-         <article class="reveal-stagger portfolio-card">
+         <article class="documentary-item reveal-stagger portfolio-card">
 
           <div class="frame aspect-video">
 
@@ -1606,7 +1605,7 @@
           </div>
 
         </article>
-         <article class="reveal-stagger portfolio-card">
+         <article class="documentary-item reveal-stagger portfolio-card hidden">
 
           <div class="frame aspect-video">
 
@@ -1642,7 +1641,7 @@
 
       <div class="text-center mt-12">
 
-        <button id="showMoreBtn" type="button"
+        <button id="showMoreDocBtn" type="button"
           class="show-more-btn btn-ghost px-8 py-3.5 rounded-full text-sm uppercase tracking-wider font-mono">
 
           Show More
@@ -1686,12 +1685,12 @@
         </div>
 
         <div class="group relative overflow-hidden rounded-2xl aspect-square">
-          <img src="./image/pic3.jpg" a lt="Photography 3"
+          <img src="./image/pic3.jpg" alt="Photography 3"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
         </div>
 
         <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-photo hidden">
-          <img src="./image/pic 4.jpg" alt="Photography 4"
+          <img src="./image/pic%204.jpg" alt="Photography 4"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
         </div>
 
@@ -2232,8 +2231,8 @@
        SHORT FILM — SHOW MORE
     ========================================================= */
 
-    const showMoreBtn =
-      document.getElementById("showMoreBtn");
+    const showMoreShortFilmBtn =
+      document.getElementById("showMoreShortFilmBtn");
 
     const projects =
       document.querySelectorAll(".project-item");
@@ -2241,9 +2240,9 @@
     let projectsExpanded = false;
 
 
-    if (showMoreBtn) {
+    if (showMoreShortFilmBtn) {
 
-      showMoreBtn.addEventListener(
+      showMoreShortFilmBtn.addEventListener(
         "click",
         function () {
 
@@ -2265,8 +2264,56 @@
             }
           );
 
-          showMoreBtn.textContent =
+          showMoreShortFilmBtn.textContent =
             projectsExpanded
+              ? "Show Less"
+              : "Show More";
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       DOCUMENTARY — SHOW MORE
+    ========================================================= */
+
+    const showMoreDocBtn =
+      document.getElementById("showMoreDocBtn");
+
+    const documentaryItems =
+      document.querySelectorAll(".documentary-item");
+
+    let documentaryExpanded = false;
+
+
+    if (showMoreDocBtn) {
+
+      showMoreDocBtn.addEventListener(
+        "click",
+        function () {
+
+          documentaryExpanded =
+            !documentaryExpanded;
+
+          documentaryItems.forEach(
+            function (item, index) {
+
+              if (index >= 3) {
+
+                item.classList.toggle(
+                  "hidden",
+                  !documentaryExpanded
+                );
+
+              }
+
+            }
+          );
+
+          showMoreDocBtn.textContent =
+            documentaryExpanded
               ? "Show Less"
               : "Show More";
 
