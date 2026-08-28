@@ -4,35 +4,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
   <title>Seth Raksa — Portfolio</title>
+
   <meta name="description"
     content="Seth Raksa is a film and video editor based in Cambodia, specializing in narrative cutting, color grading, and motion graphics for brands, creators, and short films." />
+
   <link rel="icon" type="image/png" href="tap.png" />
 
-  <!-- Apply saved theme before paint to avoid a flash -->
+  <!-- Prevent theme flash -->
   <script>
     (function () {
       var saved = localStorage.getItem("sr-theme");
+
       if (saved === "dark" || saved === "light") {
         document.documentElement.setAttribute("data-theme", saved);
       }
     })();
   </script>
 
+  <!-- Tailwind -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
 
-  <!-- Font Awesome (icons only — not used decoratively) -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
-    /* ============ THEME TOKENS ============ */
+    /* =========================================================
+       THEME
+    ========================================================= */
+
     :root,
     [data-theme="light"] {
       --bg: #fafaf8;
@@ -73,6 +82,11 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
       transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
     }
 
     .font-display {
@@ -134,7 +148,10 @@
       color: var(--accent);
     }
 
-    /* reveal-on-scroll */
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
     .reveal {
       opacity: 0;
       transform: translateY(18px);
@@ -149,7 +166,8 @@
     .reveal-stagger {
       opacity: 0;
       transform: translateY(28px) scale(0.98);
-      transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transition:
+        opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
         transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
     }
 
@@ -167,6 +185,10 @@
         transition: none;
       }
     }
+
+    /* =========================================================
+       NAV
+    ========================================================= */
 
     .nav-link {
       position: relative;
@@ -187,7 +209,6 @@
       width: 100%;
     }
 
-    /* ===== Desktop nav dropdown ===== */
     .nav-dropdown {
       position: relative;
     }
@@ -208,7 +229,10 @@
       padding-top: 12px;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        visibility 0.2s ease;
       z-index: 60;
     }
 
@@ -254,7 +278,10 @@
       transform: rotate(180deg);
     }
 
-    /* theme toggle switch */
+    /* =========================================================
+       THEME TOGGLE
+    ========================================================= */
+
     .theme-toggle {
       position: relative;
       width: 44px;
@@ -283,18 +310,24 @@
       display: grid;
       place-items: center;
       font-size: 10px;
-      transition: transform 0.3s cubic-bezier(0.16, 0.84, 0.32, 1);
+      transition:
+        transform 0.3s cubic-bezier(0.16, 0.84, 0.32, 1);
     }
 
     [data-theme="dark"] .theme-toggle .knob {
       transform: translateX(18px);
     }
 
-    /* card */
+    /* =========================================================
+       CARDS
+    ========================================================= */
+
     .clip-card {
       background: var(--surface);
       border: 1px solid var(--line);
-      transition: border-color 0.25s ease, transform 0.25s ease,
+      transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
         box-shadow 0.25s ease;
     }
 
@@ -304,29 +337,14 @@
       box-shadow: 0 24px 50px -25px var(--shadow);
     }
 
-    .clip-card.border-dashed {
-      border-style: dashed;
-    }
-
-    .clip-card.border-dashed:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .card-tag {
-      font-family: "JetBrains Mono", monospace;
-      font-size: 0.625rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    /* portfolio card — image/video-first, tag floats on the media */
     .portfolio-card {
       border-radius: 1.5rem;
       overflow: hidden;
       background: var(--surface);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .portfolio-card:hover {
@@ -369,7 +387,204 @@
       line-height: 1.5;
     }
 
-    /* ===== Logo marquee ===== */
+    /* =========================================================
+       VIDEO
+    ========================================================= */
+
+    .frame {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px rgba(232, 84, 59, 0.5);
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      color: var(--ink);
+      background: transparent;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      background: rgba(232, 84, 59, 0.08);
+      color: var(--accent);
+    }
+
+    /* Show More buttons */
+    .show-more-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+    }
+
+    .mobile-menu-overlay.hidden {
+      display: none;
+    }
+
+    .mobile-menu-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu-overlay.open .mobile-menu-backdrop {
+      opacity: 1;
+    }
+
+    .mobile-menu-panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(80vw, 320px);
+      background: var(--surface);
+      border-right: 1px solid var(--line);
+      transform: translateX(-100%);
+      transition:
+        transform 0.35s cubic-bezier(0.16, 0.84, 0.32, 1);
+      padding: 1.5rem 1.75rem 2rem;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .mobile-menu-overlay.open .mobile-menu-panel {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-close {
+      align-self: flex-start;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    .mobile-menu-link {
+      font-family: "JetBrains Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 1.0625rem;
+      color: var(--ink-dim);
+      transition: color 0.2s ease;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .mobile-menu-link:hover,
+    .mobile-menu-link.active {
+      color: var(--accent);
+    }
+
+    .mobile-menu-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin-top: 10rem;
+      margin-left: auto;
+      margin-right: auto;
+      white-space: nowrap;
+    }
+
+    .mobile-dropdown-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-dropdown-toggle .chevron {
+      font-size: 0.7rem;
+      transition: transform 0.2s ease;
+    }
+
+    .mobile-dropdown.open .mobile-dropdown-toggle .chevron {
+      transform: rotate(180deg);
+    }
+
+    .mobile-dropdown-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .mobile-dropdown.open .mobile-dropdown-panel {
+      max-height: 280px;
+    }
+
+    .mobile-submenu-link {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.875rem;
+      color: var(--ink-dim);
+      padding: 0.65rem 0 0.65rem 1.25rem;
+    }
+
+    /* =========================================================
+       MARQUEE
+    ========================================================= */
+
     .marquee-wrap {
       position: relative;
       overflow: hidden;
@@ -409,12 +624,6 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track {
-        animation: none;
-      }
-    }
-
     .tool-chip {
       display: inline-flex;
       align-items: center;
@@ -430,7 +639,7 @@
       border-radius: 999px;
     }
 
-    .tool-chip .tool-logo {
+    .tool-logo {
       width: 22px;
       height: 22px;
       border-radius: 6px;
@@ -440,67 +649,16 @@
       overflow: hidden;
     }
 
-    .tool-chip .tool-logo svg,
-    .tool-chip .tool-logo img {
+    .tool-logo svg,
+    .tool-logo img {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    /* aspect-correct video wrapper */
-    .frame {
-      position: relative;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .frame video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      font-weight: 700;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px -10px rgba(232, 84, 59, 0.5);
-    }
-
-    .btn-ghost {
-      border: 1px solid var(--line);
-      color: var(--ink);
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .btn-ghost:hover {
-      border-color: var(--accent);
-      background: rgba(232, 84, 59, 0.08);
-    }
-
-    /* ===== Hero ===== */
-    .avatar-ring {
-      width: 128px;
-      height: 128px;
-      border-radius: 999px;
-      padding: 4px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    }
-
-    .avatar-ring img {
-      width: 100%;
-      height: 100%;
-      border-radius: 999px;
-      object-fit: cover;
-      border: 3px solid var(--bg);
-      display: block;
-    }
+    /* =========================================================
+       HERO
+    ========================================================= */
 
     .hero-cursor {
       display: inline-block;
@@ -544,260 +702,245 @@
       }
     }
 
-    /* ===== Mobile slide-in menu ===== */
-    .mobile-menu-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-    }
+    /* =========================================================
+       HIDDEN ITEMS
+    ========================================================= */
 
-    .mobile-menu-overlay.hidden {
-      display: none;
-    }
-
-    .mobile-menu-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .mobile-menu-overlay.open .mobile-menu-backdrop {
-      opacity: 1;
-    }
-
-    .mobile-menu-panel {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: min(80vw, 320px);
-      background: var(--surface);
-      border-right: 1px solid var(--line);
-      transform: translateX(-100%);
-      transition: transform 0.35s cubic-bezier(0.16, 0.84, 0.32, 1);
-      padding: 1.5rem 1.75rem 2rem;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    .mobile-menu-overlay.open .mobile-menu-panel {
-      transform: translateX(0);
-    }
-
-    .mobile-menu-close {
-      align-self: flex-start;
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 10px;
-      background: var(--bg-alt);
-      border: 1px solid var(--line);
-      color: var(--ink);
-      font-size: 1.1rem;
-      margin-bottom: 2.5rem;
-      transition: border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .mobile-menu-close:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
-
-    .mobile-menu-link {
-      font-family: "JetBrains Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 1.0625rem;
-      color: var(--ink-dim);
-      transition: color 0.2s ease;
-      text-align: left;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font: inherit;
-    }
-
-    .mobile-menu-link:hover,
-    .mobile-menu-link.active {
-      color: var(--accent);
-    }
-
-   .mobile-menu-cta {
-    display: inline-block;
-    width: fit-content;
-    margin-top: 10rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-    .mobile-dropdown-toggle {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .mobile-dropdown-toggle .chevron {
-      font-size: 0.7rem;
-      transition: transform 0.2s ease;
-    }
-
-    .mobile-dropdown.open .mobile-dropdown-toggle .chevron {
-      transform: rotate(180deg);
-    }
-
-    .mobile-dropdown-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-    }
-
-    .mobile-dropdown.open .mobile-dropdown-panel {
-      max-height: 280px;
-    }
-
-    .mobile-submenu-link {
-      display: block;
-      font-family: "JetBrains Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.875rem;
-      color: var(--ink-dim);
-      padding: 0.65rem 0 0.65rem 1.25rem;
-      transition: color 0.2s ease;
-    }
-
-    .mobile-submenu-link:hover {
-      color: var(--accent);
+    .hidden-photo.hidden,
+    .hidden-design.hidden,
+    .project-item.hidden {
+      display: none !important;
     }
   </style>
 </head>
 
 <body class="antialiased">
-  <!-- ================= NAV ================= -->
+
+  <!-- =========================================================
+       NAV
+  ========================================================= -->
+
   <header class="fixed top-0 inset-x-0 z-50">
+
     <nav class="mx-auto max-w-6xl mt-4 px-4">
+
       <div
         class="flex items-center justify-between bg-surface/85 backdrop-blur-md border border-[var(--line)] rounded-full px-5 py-3 shadow-[0_10px_40px_-15px_var(--shadow)]">
+
         <a href="#home" class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
-          <span class="font-display text-lg tracking-tight">SETH RAKSA</span>
+          <span class="font-display text-lg tracking-tight">
+            SETH RAKSA
+          </span>
         </a>
 
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium font-mono uppercase tracking-wide text-dim"
-          id="desktopMenu">
-          <a href="#home" class="nav-link hover:text-ink text-ink">Home</a>
-          <a href="#about" class="nav-link hover:text-ink">About Me</a>
+        <!-- Desktop menu -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium font-mono uppercase tracking-wide text-dim">
+
+          <a href="#home" class="nav-link hover:text-ink text-ink">
+            Home
+          </a>
+
+          <a href="#about" class="nav-link hover:text-ink">
+            About Me
+          </a>
 
           <div class="nav-dropdown">
+
             <button type="button" class="nav-dropdown-toggle nav-link hover:text-ink flex items-center gap-1.5"
               aria-expanded="false">
+
               Film School
+
               <i class="fa-solid fa-chevron-down chevron"></i>
             </button>
+
             <div class="nav-dropdown-panel">
+
               <div class="nav-dropdown-inner">
+
                 <a href="#tvc">TVC</a>
                 <a href="#short-film">Short Film</a>
                 <a href="#documentary">Documentary</a>
+
               </div>
+
             </div>
+
           </div>
 
-          <a href="#photography" class="nav-link hover:text-ink">Photography</a>
-          <a href="#graphic-design" class="nav-link hover:text-ink">Graphic Design</a>
-          
-        </div>
-
-        <div class="hidden md:flex items-center gap-4">
-          <button type="button" class="theme-toggle" id="themeToggleDesktop" aria-label="Toggle light and dark theme">
-            <span class="knob"><i class="fa-solid fa-moon" style="font-size: 9px"></i></span>
-          </button>
-          <a href="#contact" class="btn-primary text-xs uppercase tracking-wider px-5 py-2.5 rounded-full">
-            Contact Me
+          <a href="#photography" class="nav-link hover:text-ink">
+            Photography
           </a>
+
+          <a href="#graphic-design" class="nav-link hover:text-ink">
+            Graphic Design
+          </a>
+
         </div>
 
-        <div class="flex md:hidden items-center gap-2">
-          <button type="button" class="theme-toggle" id="themeToggleMobile" aria-label="Toggle light and dark theme">
-            <span class="knob"><i class="fa-solid fa-moon" style="font-size: 9px"></i></span>
+        <!-- Desktop right -->
+        <div class="hidden md:flex items-center gap-4">
+
+          <button type="button" class="theme-toggle" id="themeToggleDesktop" aria-label="Toggle light and dark theme">
+
+            <span class="knob">
+              <i class="fa-solid fa-moon" style="font-size: 9px"></i>
+            </span>
+
           </button>
-          <button id="menuBtn" class="text-xl w-9 h-9 grid place-items-center text-ink" aria-label="Open menu"
-            aria-expanded="false">
-            <i id="menuIcon" class="fa-solid fa-bars"></i>
-          </button>
+
+          <a href="#contact" class="btn-primary text-xs uppercase tracking-wider px-5 py-2.5 rounded-full">
+
+            Contact Me
+
+          </a>
+
         </div>
+
+        <!-- Mobile -->
+        <div class="flex md:hidden items-center gap-2">
+
+          <button type="button" class="theme-toggle" id="themeToggleMobile" aria-label="Toggle light and dark theme">
+
+            <span class="knob">
+              <i class="fa-solid fa-moon" style="font-size: 9px"></i>
+            </span>
+
+          </button>
+
+          <button id="menuBtn" type="button" class="text-xl w-9 h-9 grid place-items-center text-ink"
+            aria-label="Open menu" aria-expanded="false">
+
+            <i class="fa-solid fa-bars"></i>
+
+          </button>
+
+        </div>
+
       </div>
+
     </nav>
+
   </header>
 
-  <!-- mobile slide-in menu -->
+
+  <!-- =========================================================
+       MOBILE MENU
+  ========================================================= -->
+
   <div id="mobileMenuOverlay" class="mobile-menu-overlay hidden">
+
     <div id="mobileMenuBackdrop" class="mobile-menu-backdrop"></div>
+
     <div class="mobile-menu-panel">
-      <button id="menuCloseBtn" class="mobile-menu-close" aria-label="Close menu">
+
+      <button id="menuCloseBtn" type="button" class="mobile-menu-close" aria-label="Close menu">
+
         <i class="fa-solid fa-xmark"></i>
+
       </button>
 
       <nav class="mobile-menu-links">
-        <a href="#home" class="mobile-menu-link active">Home</a>
-        <a href="#about" class="mobile-menu-link">About Me</a>
+
+        <a href="#home" class="mobile-menu-link active">
+          Home
+        </a>
+
+        <a href="#about" class="mobile-menu-link">
+          About Me
+        </a>
 
         <div class="mobile-dropdown">
+
           <button type="button" class="mobile-dropdown-toggle mobile-menu-link" aria-expanded="false">
+
             Film School
+
             <i class="fa-solid fa-chevron-down chevron"></i>
+
           </button>
+
           <div class="mobile-dropdown-panel">
-            <a href="#tvc" class="mobile-submenu-link">TVC</a>
-            <a href="#short-film" class="mobile-submenu-link">Short Film</a>
-            <a href="#documentary" class="mobile-submenu-link">Documentary</a>
+
+            <a href="#tvc" class="mobile-submenu-link">
+              TVC
+            </a>
+
+            <a href="#short-film" class="mobile-submenu-link">
+              Short Film
+            </a>
+
+            <a href="#documentary" class="mobile-submenu-link">
+              Documentary
+            </a>
+
           </div>
+
         </div>
 
-        <a href="#photography" class="mobile-menu-link">Photography</a>
-        <a href="#graphic-design" class="mobile-menu-link">Graphic Design</a>
-       
+        <a href="#photography" class="mobile-menu-link">
+          Photography
+        </a>
+
+        <a href="#graphic-design" class="mobile-menu-link">
+          Graphic Design
+        </a>
+
       </nav>
 
-     <a href="#contact"
-    class="mobile-menu-cta btn-primary text-xs uppercase tracking-wider px-6 py-3 rounded-full text-center inline-block w-auto mx-auto">
-    Contact Me
-</a>
+      <a href="#contact"
+        class="mobile-menu-cta btn-primary text-[10px] uppercase tracking-wide px-4 py-2 rounded-full text-center">
+
+        Contact Me
+
+      </a>
+
     </div>
+
   </div>
 
 
-  <!-- ================= HERO ================= -->
-  <section id="home" class="relative min-h-[100svh] flex items-center px-5 sm:px-8 pt-28 pb-16 overflow-hidden">
-    <img src="./image/saa.png" alt=""
-      class="hero-bg-layer parallax absolute inset-0 w-full h-full object-cover opacity-99" data-depth="0.50"
-      style="height: 130%; top: -15%;" />
-    <div class="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-[var(--bg)]/70 to-[var(--bg)]"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-transparent to-[var(--bg)]"></div>
+  <!-- =========================================================
+       HERO
+  ========================================================= -->
 
-    <div class="relative z-10 max-w-6xl mx-auto w-full parallax" data-depth="-0.08">
+  <section id="home" class="relative min-h-[100svh] flex items-center px-5 sm:px-8 pt-28 pb-16 overflow-hidden">
+
+    <img src="./image/saa.png" alt="" class="absolute inset-0 w-full h-full object-cover opacity-99"
+      style="height: 130%; top: -15%;" />
+
+    <div class="absolute inset-0 bg-gradient-to-b from-[var(--bg)] via-[var(--bg)]/70 to-[var(--bg)]">
+    </div>
+
+    <div class="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-transparent to-[var(--bg)]">
+    </div>
+
+    <div class="relative z-10 max-w-6xl mx-auto w-full">
+
       <div
         class="flex items-center gap-3 mb-6 font-mono text-xs sm:text-sm text-[var(--ink-dim)] uppercase tracking-[0.2em]">
-        <span class="w-2 h-2 rounded-full bg-[var(--accent)] tally-dot"></span>
+
+        <span class="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
+
         <span>REC</span>
+
         <span class="opacity-50">/</span>
-        <span id="liveClock">00:00:00:00</span>
+
+        <span id="liveClock">
+          00:00:00:00
+        </span>
+
         <span class="opacity-50">/</span>
-        <span>Phnom Penh, Cambodia</span>
+
+        <span>
+          Phnom Penh, Cambodia
+        </span>
+
       </div>
 
       <h1 class="font-display leading-[0.95] mb-6">
+
         <span class="block text-[10vw] sm:text-[6vw] md:text-[5rem] lg:text-[6rem]">
           HELLO!
         </span>
@@ -805,76 +948,92 @@
         <span class="block text-[10vw] sm:text-[6vw] md:text-[5rem] lg:text-[6rem] text-[var(--accent)]">
           I'M SETH RAKSA,
         </span>
+
       </h1>
 
       <p class="max-w-xl text-base sm:text-lg text-[var(--ink-dim)] mb-10 leading-relaxed">
-        I'm Seth Raksa, a film &amp; video editor based in Cambodia. I turn
-        raw footage into paced, emotional edits for brands, creators, and
-        short films — built frame by frame in Premiere Pro, DaVinci Resolve,
-        and After Effects.
+
+        I'm Seth Raksa, a film &amp; video editor based in Cambodia.
+        I turn raw footage into paced, emotional edits for brands,
+        creators, and short films — built frame by frame in Premiere Pro,
+        DaVinci Resolve, and After Effects.
+
       </p>
 
       <div class="flex flex-wrap items-center gap-4">
+
         <a href="#tvc" class="btn-primary px-7 py-3.5 rounded-full text-sm uppercase tracking-wider">
+
           View Projects
+
         </a>
+
         <a href="#short-film"
           class="btn-ghost px-7 py-3.5 rounded-full text-sm uppercase tracking-wider inline-flex items-center gap-2">
-          <i class="fa-solid fa-play text-xs"></i> Watch Reel
+
+          <i class="fa-solid fa-play text-xs"></i>
+
+          Watch Reel
+
         </a>
+
       </div>
+
     </div>
 
-    <a href="#about"
-      class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-[var(--ink-dim)] font-mono text-xs uppercase tracking-widest">
-      Scroll
-      <span class="w-px h-8 bg-[var(--line)] relative overflow-hidden">
-        <span class="absolute inset-x-0 top-0 h-1/2 bg-[var(--accent)] animate-bounce"></span>
-      </span>
-    </a>
   </section>
 
-  <!-- ================= LOGO / TOOLS MARQUEE STRIP ================= -->
+
+  <!-- =========================================================
+       TOOLS
+  ========================================================= -->
+
   <div class="marquee-wrap border-y border-[var(--line)] bg-alt py-5">
-    <div class="marquee-track" id="marqueeTrack">
-      <!-- group A -->
+
+    <div class="marquee-track">
+
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #00005b">
+        <span class="tool-logo" style="background:#00005b">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="#00005B" />
-            <text x="16" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="13"
-              fill="#9999FF">Pr</text>
+            <text x="16" y="21" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13"
+              fill="#9999FF">
+              Pr
+            </text>
           </svg>
         </span>
         Premiere Pro
       </span>
 
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #1a1a1a">
-          <img src="./image/DaVinci.png" alt="DaVinci Resolve" width="22" height="22" />
+        <span class="tool-logo" style="background:#1a1a1a">
+          <img src="./image/DaVinci.png" alt="DaVinci Resolve" />
         </span>
         DaVinci Resolve
       </span>
 
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #00005b">
+        <span class="tool-logo" style="background:#00005b">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="#00005B" />
-            <text x="16" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="13"
-              fill="#9999FF">Ae</text>
+            <text x="16" y="21" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13"
+              fill="#9999FF">
+              Ae
+            </text>
           </svg>
         </span>
         After Effects
       </span>
 
-     <span class="tool-chip">
-    <span class="tool-logo" style="background: #000000">
-        <img src="./image/CapCut.png" alt="CapCut Logo" class="w-full h-full object-contain">
-    </span>
-    CapCut
-</span>
       <span class="tool-chip">
-        <span class="tool-logo" style="background: var(--accent)">
+        <span class="tool-logo" style="background:#000">
+          <img src="./image/CapCut.png" alt="CapCut Logo" />
+        </span>
+        CapCut
+      </span>
+
+      <span class="tool-chip">
+        <span class="tool-logo" style="background:var(--accent)">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="var(--accent)" />
             <circle cx="11.5" cy="16" r="5" fill="none" stroke="#fff" stroke-width="1.6" />
@@ -885,54 +1044,60 @@
       </span>
 
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #1b1e23">
+        <span class="tool-logo" style="background:#1b1e23">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="#1B1E23" />
             <path d="M7 20 L7 14 L10 11 L10 21 L13 9 L13 23 L16 8 L16 24 L19 11 L19 21 L22 14 L22 18" fill="none"
-              stroke="#E8543B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              stroke="#E8543B" stroke-width="1.6" />
           </svg>
         </span>
         Sound Design
       </span>
 
-      <!-- group B (exact duplicate for seamless loop) -->
+      <!-- Duplicate -->
+
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #00005b">
+        <span class="tool-logo" style="background:#00005b">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="#00005B" />
-            <text x="16" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="13"
-              fill="#9999FF">Pr</text>
+            <text x="16" y="21" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13"
+              fill="#9999FF">
+              Pr
+            </text>
           </svg>
         </span>
         Premiere Pro
       </span>
 
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #1a1a1a">
-          <img src="./image/DaVinci.png" alt="DaVinci Resolve" width="22" height="22" />
+        <span class="tool-logo" style="background:#1a1a1a">
+          <img src="./image/DaVinci.png" alt="DaVinci Resolve" />
         </span>
         DaVinci Resolve
       </span>
 
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #00005b">
+        <span class="tool-logo" style="background:#00005b">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="#00005B" />
-            <text x="16" y="21" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="13"
-              fill="#9999FF">Ae</text>
+            <text x="16" y="21" text-anchor="middle" font-family="Arial" font-weight="700" font-size="13"
+              fill="#9999FF">
+              Ae
+            </text>
           </svg>
         </span>
         After Effects
       </span>
 
-        <span class="tool-chip">
-    <span class="tool-logo" style="background: #000000">
-        <img src="./image/CapCut.png" alt="CapCut Logo" class="w-full h-full object-contain">
-    </span>
-    CapCut
-  </span>
       <span class="tool-chip">
-        <span class="tool-logo" style="background: var(--accent)">
+        <span class="tool-logo" style="background:#000">
+          <img src="./image/CapCut.png" alt="CapCut Logo" />
+        </span>
+        CapCut
+      </span>
+
+      <span class="tool-chip">
+        <span class="tool-logo" style="background:var(--accent)">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="var(--accent)" />
             <circle cx="11.5" cy="16" r="5" fill="none" stroke="#fff" stroke-width="1.6" />
@@ -943,453 +1108,1290 @@
       </span>
 
       <span class="tool-chip">
-        <span class="tool-logo" style="background: #1b1e23">
+        <span class="tool-logo" style="background:#1b1e23">
           <svg viewBox="0 0 32 32">
             <rect width="32" height="32" rx="4" fill="#1B1E23" />
             <path d="M7 20 L7 14 L10 11 L10 21 L13 9 L13 23 L16 8 L16 24 L19 11 L19 21 L22 14 L22 18" fill="none"
-              stroke="#E8543B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              stroke="#E8543B" stroke-width="1.6" />
           </svg>
         </span>
         Sound Design
       </span>
+
     </div>
+
   </div>
 
-  <!-- ================= ABOUT ================= -->
+
+  <!-- =========================================================
+       ABOUT
+  ========================================================= -->
+
   <section id="about" class="py-24 sm:py-32 px-5 sm:px-8">
+
     <div class="max-w-6xl mx-auto">
+
       <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-stretch">
+
         <div class="reveal h-full">
+
           <div class="frame rounded-3xl border border-[var(--line)] h-full overflow-hidden">
+
             <img src="./image/image-raksa.jpg" alt="Portrait of Seth Raksa" class="w-full h-full object-cover"
               loading="lazy" />
+
           </div>
+
         </div>
 
         <div class="reveal flex flex-col justify-center">
+
           <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent">
             About Me
           </span>
 
           <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-7 leading-tight">
+
             Creative Video Editor & Visual Storyteller
+
           </h2>
 
           <p class="mb-5 leading-relaxed text-dim text-base sm:text-lg">
+
             I am a film student with a strong passion for
             <strong class="text-ink">video editing</strong> and
-            <strong class="text-ink">visual storytelling</strong>. I enjoy
-            transforming ideas into meaningful visual content through the
-            editing process.
+            <strong class="text-ink">visual storytelling</strong>.
+
+            I enjoy transforming ideas into meaningful visual content
+            through the editing process.
+
           </p>
 
           <p class="mb-5 leading-relaxed text-dim text-base sm:text-lg">
-            I am creative, patient, and always eager to improve my skills and
-            learn new techniques. I have strong communication skills and
-            work effectively both independently and as part of a team.
+
+            I am creative, patient, and always eager to improve my skills
+            and learn new techniques. I have strong communication skills
+            and work effectively both independently and as part of a team.
+
           </p>
 
           <p class="mb-9 leading-relaxed text-dim text-base sm:text-lg">
+
             I am ready to contribute my best efforts in a video editing
             role while continuing to grow professionally and expand my
             creative abilities.
+
           </p>
 
           <p class="leading-relaxed text-dim text-base sm:text-lg">
+
             My goal is to become a
-            <strong class="text-ink">Senior Video Editor</strong> who can
-            lead creative post-production projects from concept to final
-            delivery, creating impactful and compelling visual stories that
-            engage and inspire audiences.
+            <strong class="text-ink">Senior Video Editor</strong>
+            who can lead creative post-production projects from concept
+            to final delivery.
+
           </p>
 
           <div class="flex items-center gap-4 mt-9">
+
             <a href="https://t.me/Rakkza_2005" target="_blank" rel="noopener" aria-label="Telegram"
               class="w-11 h-11 grid place-items-center rounded-full border border-[var(--line)] hover:border-[var(--accent)] hover:text-accent transition">
+
               <i class="fab fa-telegram text-lg"></i>
+
             </a>
+
             <a href="mailto:rakkzaa26@gmail.com" aria-label="Email"
               class="w-11 h-11 grid place-items-center rounded-full border border-[var(--line)] hover:border-[var(--accent)] hover:text-accent transition">
+
               <i class="fa-solid fa-envelope text-lg"></i>
+
             </a>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </section>
 
-  <!-- ================= TVC ================= -->
+
+  <!-- =========================================================
+       TVC
+  ========================================================= -->
+
   <section id="tvc" class="py-24 sm:py-32 px-5 sm:px-8">
+
     <div class="max-w-6xl mx-auto">
-      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">Film School</span>
-      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">TVC</h2>
+
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">
+        Film School
+      </span>
+
+      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">
+        TVC
+      </h2>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
         <article class="reveal-stagger portfolio-card">
+
           <div class="frame aspect-video">
-            <span class="portfolio-badge">TVC</span>
-            <video class="w-full h-full object-cover" controls muted preload="metadata"
-              poster="">
+
+            <span class="portfolio-badge">
+              TVC
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/tvc.png">
+
               <source src="./image/TVC_MEE CHIET.mp4" type="video/mp4" />
+
             </video>
+
           </div>
+
           <div class="portfolio-body">
-            <h3 class="portfolio-title">MEE CHIET</h3>
-            <p class="portfolio-desc">Re-edit </p>
+
+            <h3 class="portfolio-title">
+              MEE CHIET
+            </h3>
+
+            <p class="portfolio-desc">
+              Re-edit
+            </p>
+
           </div>
+
         </article>
-        <!-- more short film cards — copy the <article> block above and edit -->
+
       </div>
+
     </div>
+
   </section>
 
-  <!-- ================= SHORT FILM ================= -->
+
+  <!-- =========================================================
+       SHORT FILM
+  ========================================================= -->
+
   <section id="short-film" class="py-24 sm:py-32 px-5 sm:px-8 bg-alt border-y border-[var(--line)]">
+
     <div class="max-w-6xl mx-auto">
-      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">Film School</span>
-      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">Short Film</h2>
+
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">
+        Film School
+      </span>
+
+      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">
+        Short Film
+      </h2>
+
+      <!-- PROJECTS -->
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Project 1 -->
+        <article class="project-item reveal-stagger portfolio-card">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Short Film
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short1.png">
+
+              <source src="./image/short1.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              Short Film 01
+            </h3>
+
+            <p class="portfolio-desc">
+              Video Editing
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Project 2 -->
+        <article class="project-item reveal-stagger portfolio-card">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Short Film
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short2.png">
+
+              <source src="./image/short2.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              Short Film 02
+            </h3>
+
+            <p class="portfolio-desc">
+              Video Editing
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Project 3 -->
+        <article class="project-item reveal-stagger portfolio-card">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Short Film
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short3.png">
+
+              <source src="./image/short3.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              Short Film 03
+            </h3>
+
+            <p class="portfolio-desc">
+              Video Editing
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Project 4 hidden -->
+        <article class="project-item reveal-stagger portfolio-card hidden">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Short Film
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short4.png">
+
+              <source src="./image/short4.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              Short Film 04
+            </h3>
+
+            <p class="portfolio-desc">
+              Video Editing
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Project 5 hidden -->
+        <article class="project-item reveal-stagger portfolio-card hidden">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Short Film
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short5.png">
+
+              <source src="./image/short5.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              Short Film 05
+            </h3>
+
+            <p class="portfolio-desc">
+              Video Editing
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- Project 6 hidden -->
+        <article class="project-item reveal-stagger portfolio-card hidden">
+
+          <div class="frame aspect-video">
+
+            <span class="portfolio-badge">
+              Short Film
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/short6.png">
+
+              <source src="./image/short6.mp4" type="video/mp4" />
+
+            </video>
+
+          </div>
+
+          <div class="portfolio-body">
+
+            <h3 class="portfolio-title">
+              Short Film 06
+            </h3>
+
+            <p class="portfolio-desc">
+              Video Editing
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+
+      <!-- SHOW MORE -->
+
+      <div class="text-center mt-12">
+
+        <button id="showMoreBtn" type="button"
+          class="show-more-btn btn-ghost px-8 py-3.5 rounded-full text-sm uppercase tracking-wider font-mono">
+
+          Show More
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       DOCUMENTARY
+  ========================================================= -->
+
+  <section id="documentary" class="py-24 sm:py-32 px-5 sm:px-8">
+
+    <div class="max-w-6xl mx-auto">
+
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">
+        Film School
+      </span>
+
+      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">
+        Documentary
+      </h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
         <article class="reveal-stagger portfolio-card">
+
           <div class="frame aspect-video">
-            <span class="portfolio-badge">Short Film</span>
-            <video class="w-full h-full object-cover" controls muted preload="metadata"
-              poster="./image/Adobe Premiere Pro.png">
-              <source src="./image/HAPPINESS_31072025_RAKSA%20(v2).mp4" type="video/mp4" />
+
+            <span class="portfolio-badge">
+              Documentary
+            </span>
+
+            <video class="w-full h-full object-cover" controls muted preload="metadata" poster="./image/boy.png">
+
+              <source src="./image/ORPHAN BOY .mp4" type="video/mp4" />
+
             </video>
+
           </div>
+
           <div class="portfolio-body">
-            <h3 class="portfolio-title">HAPPINESS</h3>
-            <p class="portfolio-desc">Re-edit for first year</p>
+
+            <h3 class="portfolio-title">
+              ORPHAN BOY
+            </h3>
+
+            <p class="portfolio-desc">
+              Assistant Director
+            </p>
+
           </div>
+
         </article>
 
-        <article class="project-item reveal-stagger portfolio-card">
-          <div class="frame aspect-video">
-            <span class="portfolio-badge">Social</span>
-            <video class="w-full h-full object-cover" controls muted preload="metadata">
-              <source src="./image/micheat.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="portfolio-body">
-            <h3 class="portfolio-title">MEE CHEAT</h3>
-            <p class="portfolio-desc">Fast-paced transitions cut to music for short-form reach.</p>
-          </div>
-        </article>
+      </div>
 
-        <article class="project-item reveal-stagger portfolio-card">
-          <div class="frame aspect-video">
-            <span class="portfolio-badge">Life Story</span>
-            <video class="w-full h-full object-cover" controls muted preload="metadata">
-              <source src="./image/makphanha.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="portfolio-body">
-            <h3 class="portfolio-title">Migrant woman</h3>
-            <p class="portfolio-desc">Stories of migrant women who overcome challenges,</p>
-          </div>
-        </article>
+    </div>
 
-        <article class="project-item reveal-stagger portfolio-card">
-          <div class="frame aspect-video">
-            <span class="portfolio-badge">Information</span>
-            <video class="w-full h-full object-cover" controls muted preload="metadata">
-              <source src="./image/padam.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="portfolio-body">
-            <h3 class="portfolio-title">PAAA DAM</h3>
-            <p class="portfolio-desc">Story-driven edit with custom color grading.</p>
-          </div>
-        </article>
+  </section>
 
-        <article class="project-item hidden reveal-stagger portfolio-card">
-          <div class="frame aspect-video">
-            <span class="portfolio-badge">Brand</span>
-            <video class="w-full h-full object-cover" controls muted preload="metadata">
-              <source src="./image/Indoor%20Documentary_Raksa.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="portfolio-body">
-            <h3 class="portfolio-title">Indoor Documentary</h3>
-            <p class="portfolio-desc">Indoor documentary-style edit for brand storytelling.</p>
-          </div>
-        </article>
-        <!-- more short film cards — copy the <article> block above and edit -->
+
+  <!-- =========================================================
+       PHOTOGRAPHY
+  ========================================================= -->
+
+  <section id="photography" class="py-24 sm:py-32 px-5 sm:px-8 bg-alt border-y border-[var(--line)]">
+
+    <div class="max-w-6xl mx-auto">
+
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">
+        Photography
+      </span>
+
+      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">
+        Photography
+      </h2>
+
+      <div id="photo-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square">
+          <img src="./image/pic1.jpg" alt="Photography 1"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square">
+          <img src="./image/pic2.jpg" alt="Photography 2"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square">
+          <img src="./image/pic3.jpg" alt="Photography 3"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-photo hidden">
+          <img src="./image/pic4.jpg" alt="Photography 4"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-photo hidden">
+          <img src="./image/pic5.jpg" alt="Photography 5"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-photo hidden">
+          <img src="./image/pic6.jpg" alt="Photography 6"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+      </div>
+
+      <div class="text-center mt-10">
+
+        <button id="toggle-photos-btn" type="button"
+          class="show-more-btn btn-ghost px-8 py-3.5 rounded-full text-sm uppercase tracking-wider font-mono">
+
+          Show More
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       GRAPHIC DESIGN
+  ========================================================= -->
+
+  <section id="graphic-design" class="py-24 sm:py-32 px-5 sm:px-8">
+
+    <div class="max-w-6xl mx-auto">
+
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">
+        Graphic Design
+      </span>
+
+      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">
+        Graphic Design
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square">
+          <img src="./image/img1.jpg" alt="Graphic Design 1"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square">
+          <img src="./image/img2.jpg" alt="Graphic Design 2"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square">
+          <img src="./image/img3.jpg" alt="Graphic Design 3"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-design hidden">
+          <img src="./image/img4.jpg" alt="Graphic Design 4"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-design hidden">
+          <img src="./image/img5.png" alt="Graphic Design 5"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-design hidden">
+          <img src="./image/img6.png" alt="Graphic Design 6"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+         <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-design hidden">
+          <img src="./image/img7.png" alt="Graphic Design 7"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+         <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-design hidden">
+          <img src="./image/img8.jpg" alt="Graphic Design 8"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+         <div class="group relative overflow-hidden rounded-2xl aspect-square hidden-design hidden">
+          <img src="./image/img9.png" alt="Graphic Design 9"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+        </div>
+
       </div>
 
       <div class="text-center mt-12">
-        <button id="showMoreBtn" class="btn-ghost px-8 py-3.5 rounded-full text-sm uppercase tracking-wider font-mono">
+
+        <button id="showMoreDesignBtn" type="button"
+          class="show-more-btn btn-ghost px-8 py-3.5 rounded-full text-sm uppercase tracking-wider font-mono">
+
           Show More
+
         </button>
+
       </div>
+
     </div>
+
   </section>
 
-  <!-- ================= DOCUMENTARY ================= -->
-  <section id="documentary" class="py-24 sm:py-32 px-5 sm:px-8">
-    <div class="max-w-6xl mx-auto">
-      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">Film School</span>
-      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">Documentary</h2>
-       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-         <article class="reveal-stagger portfolio-card">
-          <div class="frame aspect-video">
-            <span class="portfolio-badge">Documentary</span>
-            <video class="w-full h-full object-cover" controls muted preload="metadata"
-              poster="./image/boy.png">
-              <source src="./image/ORPHAN BOY .mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="portfolio-body">
-            <h3 class="portfolio-title">ORPHAN BOY</h3>
-            <p class="portfolio-desc"> Assistant Director</p>
-          </div>
-        </article>
-        <!-- more documentary cards — copy the <article> block above and edit -->
-      </div>
-    </div>
-  </section>
 
-  <!-- ================= PHOTOGRAPHY (placeholder) ================= -->
-  <section id="photography" class="py-24 sm:py-32 px-5 sm:px-8 bg-alt border-y border-[var(--line)]">
-    <div class="max-w-6xl mx-auto">
-      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">Photography</span>
-      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">Photography</h2>
+  <!-- =========================================================
+       CONTACT
+  ========================================================= -->
 
-      <div class="reveal clip-card rounded-3xl border-dashed p-8 sm:p-12 text-center">
-        <i class="fa-solid fa-camera text-3xl text-accent mb-4 opacity-70"></i>
-        <p class="text-dim text-sm sm:text-base max-w-md mx-auto">
-          Photography content goes here. Add your text, and drop in photos later.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= GRAPHIC DESIGN (placeholder) ================= -->
-  <section id="graphic-design" class="py-24 sm:py-32 px-5 sm:px-8">
-    <div class="max-w-6xl mx-auto">
-      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">Graphic Design</span>
-      <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-8 reveal">Graphic Design</h2>
-
-      <div class="reveal clip-card rounded-3xl border-dashed p-8 sm:p-12 text-center">
-        <i class="fa-solid fa-pen-ruler text-3xl text-accent mb-4 opacity-70"></i>
-        <p class="text-dim text-sm sm:text-base max-w-md mx-auto">
-          Graphic design content goes here. Add your text, and drop in images later.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CONTACT ================= -->
   <section id="contact" class="py-24 sm:py-32 px-5 sm:px-8">
+
     <div class="max-w-4xl mx-auto text-center">
-      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">Contact</span>
-      <h2 class="font-display text-4xl sm:text-6xl mt-3 mb-5 reveal">Let's cut something great.</h2>
+
+      <span class="font-mono text-xs uppercase tracking-[0.25em] text-accent reveal">
+        Contact
+      </span>
+
+      <h2 class="font-display text-4xl sm:text-6xl mt-3 mb-5 reveal">
+        Let's cut something great.
+      </h2>
+
       <p class="text-dim text-base sm:text-lg mb-12 max-w-xl mx-auto reveal">
-        Open for freelance projects and long-term collaboration. Tell me about your footage and what story you want it
-        to tell.
+
+        Open for freelance projects and long-term collaboration.
+        Tell me about your footage and what story you want it to tell.
+
       </p>
 
       <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto reveal">
-        <a href="mailto:rakkzaa26@gmail.com"
-          class="clip-card rounded-3xl p-6 flex items-center gap-4 text-left hover:border-[var(--accent)] transition">
+
+        <a href="mailto:rakkzaa26@gmail.com" class="clip-card rounded-3xl p-6 flex items-center gap-4 text-left">
+
           <span class="w-12 h-12 rounded-full bg-[var(--accent)]/15 text-accent grid place-items-center text-lg">
+
             <i class="fa-solid fa-envelope"></i>
+
           </span>
+
           <span>
-            <span class="block text-xs font-mono uppercase tracking-wider text-dim">Email</span>
-            <span class="block font-semibold">rakkzaa26@gmail.com</span>
+
+            <span class="block text-xs font-mono uppercase tracking-wider text-dim">
+              Email
+            </span>
+
+            <span class="block font-semibold">
+              rakkzaa26@gmail.com
+            </span>
+
           </span>
+
         </a>
 
-        <a href="tel:+855976594460"
-          class="clip-card rounded-3xl p-6 flex items-center gap-4 text-left hover:border-[var(--accent)] transition">
+        <a href="tel:+855976594460" class="clip-card rounded-3xl p-6 flex items-center gap-4 text-left">
+
           <span class="w-12 h-12 rounded-full bg-[var(--accent)]/15 text-accent grid place-items-center text-lg">
+
             <i class="fa-solid fa-phone"></i>
+
           </span>
+
           <span>
-            <span class="block text-xs font-mono uppercase tracking-wider text-dim">Phone</span>
-            <span class="block font-semibold">+855 97 659 4460</span>
+
+            <span class="block text-xs font-mono uppercase tracking-wider text-dim">
+              Phone
+            </span>
+
+            <span class="block font-semibold">
+              +855 97 659 4460
+            </span>
+
           </span>
+
         </a>
+
       </div>
 
       <div class="flex items-center justify-center gap-5 mt-10 reveal">
+
         <a href="https://t.me/Rakkza_2005" target="_blank" rel="noopener" aria-label="Telegram"
           class="w-11 h-11 grid place-items-center rounded-full border border-[var(--line)] hover:border-[var(--accent)] hover:text-accent transition">
+
           <i class="fab fa-telegram text-lg"></i>
+
         </a>
+
       </div>
+
     </div>
+
   </section>
 
-  <!-- ================= FOOTER ================= -->
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================= -->
+
   <footer class="border-t border-[var(--line)] py-8 px-5 sm:px-8">
+
     <div
       class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono uppercase tracking-wider text-dim">
-      <span>© 2026 Seth Raksa — Film &amp; Video Editor</span>
-      <span class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
-        Cambodia
+
+      <span>
+        © 2026 Seth Raksa — Film &amp; Video Editor
       </span>
+
+      <span class="flex items-center gap-2">
+
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+
+        Cambodia
+
+      </span>
+
     </div>
+
   </footer>
 
-  <!-- ================= SCRIPTS ================= -->
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================= -->
+
   <script>
-    // ===== theme toggle =====
+
+    /* =========================================================
+       THEME TOGGLE
+    ========================================================= */
+
     function applyThemeIcon() {
-      var isDark = document.documentElement.getAttribute("data-theme") === "dark";
-      document.querySelectorAll(".theme-toggle .knob i").forEach(function (icon) {
-        icon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
-        icon.style.fontSize = "9px";
-      });
+
+      var isDark =
+        document.documentElement.getAttribute("data-theme") === "dark";
+
+      document
+        .querySelectorAll(".theme-toggle .knob i")
+        .forEach(function (icon) {
+
+          icon.className = isDark
+            ? "fa-solid fa-sun"
+            : "fa-solid fa-moon";
+
+          icon.style.fontSize = "9px";
+
+        });
+
     }
+
     function toggleTheme() {
-      var current = document.documentElement.getAttribute("data-theme") || "light";
-      var next = current === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", next);
-      localStorage.setItem("sr-theme", next);
+
+      var current =
+        document.documentElement.getAttribute("data-theme") || "light";
+
+      var next =
+        current === "dark" ? "light" : "dark";
+
+      document.documentElement.setAttribute(
+        "data-theme",
+        next
+      );
+
+      localStorage.setItem(
+        "sr-theme",
+        next
+      );
+
       applyThemeIcon();
+
     }
-    document.getElementById("themeToggleDesktop").addEventListener("click", toggleTheme);
-    document.getElementById("themeToggleMobile").addEventListener("click", toggleTheme);
+
+    const desktopTheme =
+      document.getElementById("themeToggleDesktop");
+
+    const mobileTheme =
+      document.getElementById("themeToggleMobile");
+
+    if (desktopTheme) {
+      desktopTheme.addEventListener(
+        "click",
+        toggleTheme
+      );
+    }
+
+    if (mobileTheme) {
+      mobileTheme.addEventListener(
+        "click",
+        toggleTheme
+      );
+    }
+
     applyThemeIcon();
 
-    // ===== hero role rotator =====
-    var roles = ["Video Editor", "Colorist", "Motion Designer", "Storyteller"];
-    var roleIndex = 0;
-    var roleEl = document.getElementById("roleRotator");
-    setInterval(function () {
-      roleIndex = (roleIndex + 1) % roles.length;
-      roleEl.style.opacity = 0;
-      setTimeout(function () {
-        roleEl.textContent = roles[roleIndex];
-        roleEl.classList.remove("role-word");
-        void roleEl.offsetWidth;
-        roleEl.classList.add("role-word");
-        roleEl.style.opacity = 1;
-      }, 200);
-    }, 2400);
 
-    // mobile slide-in menu
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenuOverlay = document.getElementById("mobileMenuOverlay");
-    const mobileMenuBackdrop = document.getElementById("mobileMenuBackdrop");
-    const menuCloseBtn = document.getElementById("menuCloseBtn");
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const mobileMenuOverlay =
+      document.getElementById("mobileMenuOverlay");
+
+    const mobileMenuBackdrop =
+      document.getElementById("mobileMenuBackdrop");
+
+    const menuCloseBtn =
+      document.getElementById("menuCloseBtn");
+
 
     function openMobileMenu() {
+
       mobileMenuOverlay.classList.remove("hidden");
-      requestAnimationFrame(() => {
+
+      requestAnimationFrame(function () {
         mobileMenuOverlay.classList.add("open");
       });
+
       document.body.style.overflow = "hidden";
-      menuBtn.setAttribute("aria-expanded", "true");
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
     }
+
+
     function closeMobileMenu() {
+
       mobileMenuOverlay.classList.remove("open");
+
       document.body.style.overflow = "";
-      menuBtn.setAttribute("aria-expanded", "false");
-      setTimeout(() => {
-        if (!mobileMenuOverlay.classList.contains("open")) {
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      setTimeout(function () {
+
+        if (
+          !mobileMenuOverlay.classList.contains("open")
+        ) {
+
           mobileMenuOverlay.classList.add("hidden");
+
         }
+
       }, 350);
-    }
-    menuBtn.addEventListener("click", openMobileMenu);
-    menuCloseBtn.addEventListener("click", closeMobileMenu);
-    mobileMenuBackdrop.addEventListener("click", closeMobileMenu);
-    document.querySelectorAll(".mobile-menu-link, .mobile-menu-cta").forEach((link) => {
-      if (link.classList.contains("mobile-dropdown-toggle")) return;
-      link.addEventListener("click", closeMobileMenu);
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && mobileMenuOverlay.classList.contains("open")) {
-        closeMobileMenu();
-      }
-    });
 
-    // desktop nav dropdown (Film School)
-    document.querySelectorAll(".nav-dropdown").forEach((dropdown) => {
-      const toggle = dropdown.querySelector(".nav-dropdown-toggle");
-      toggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isOpen = dropdown.classList.contains("open");
-        document.querySelectorAll(".nav-dropdown.open").forEach((d) => {
-          d.classList.remove("open");
-          d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
-        });
-        if (!isOpen) {
-          dropdown.classList.add("open");
-          toggle.setAttribute("aria-expanded", "true");
+    }
+
+
+    if (menuBtn) {
+      menuBtn.addEventListener(
+        "click",
+        openMobileMenu
+      );
+    }
+
+    if (menuCloseBtn) {
+      menuCloseBtn.addEventListener(
+        "click",
+        closeMobileMenu
+      );
+    }
+
+    if (mobileMenuBackdrop) {
+      mobileMenuBackdrop.addEventListener(
+        "click",
+        closeMobileMenu
+      );
+    }
+
+
+    document
+      .querySelectorAll(
+        ".mobile-menu-link, .mobile-menu-cta"
+      )
+      .forEach(function (link) {
+
+        if (
+          link.classList.contains(
+            "mobile-dropdown-toggle"
+          )
+        ) {
+          return;
         }
+
+        link.addEventListener(
+          "click",
+          closeMobileMenu
+        );
+
       });
-    });
-    document.addEventListener("click", () => {
-      document.querySelectorAll(".nav-dropdown.open").forEach((d) => {
-        d.classList.remove("open");
-        d.querySelector(".nav-dropdown-toggle").setAttribute("aria-expanded", "false");
-      });
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        document.querySelectorAll(".nav-dropdown.open").forEach((d) => d.classList.remove("open"));
+
+
+    document.addEventListener(
+      "keydown",
+      function (e) {
+
+        if (
+          e.key === "Escape" &&
+          mobileMenuOverlay.classList.contains("open")
+        ) {
+
+          closeMobileMenu();
+
+        }
+
       }
-    });
-
-    // mobile accordion (Film School)
-    document.querySelectorAll(".mobile-dropdown").forEach((dropdown) => {
-      const toggle = dropdown.querySelector(".mobile-dropdown-toggle");
-      toggle.addEventListener("click", () => {
-        const isOpen = dropdown.classList.contains("open");
-        dropdown.classList.toggle("open", !isOpen);
-        toggle.setAttribute("aria-expanded", String(!isOpen));
-      });
-    });
-
-    // show more projects
-    const showMoreBtn = document.getElementById("showMoreBtn");
-    const projects = document.querySelectorAll(".project-item");
-    let isExpanded = false;
-    showMoreBtn.addEventListener("click", () => {
-      isExpanded = !isExpanded;
-      projects.forEach((item, index) => {
-        if (index >= 3) item.classList.toggle("hidden", !isExpanded);
-      });
-      showMoreBtn.textContent = isExpanded ? "Show Less" : "Show More";
-    });
-
-    // scroll reveal
-    const revealEls = document.querySelectorAll(".reveal, .reveal-stagger");
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 },
     );
-    revealEls.forEach((el) => io.observe(el));
 
-    // ===== live clock =====
-    function updateClock() {
-      const now = new Date();
 
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
-      const seconds = String(now.getSeconds()).padStart(2, "0");
-      const frames = String(Math.floor(now.getMilliseconds() / 40)).padStart(2, "0");
+    /* =========================================================
+       DESKTOP DROPDOWN
+    ========================================================= */
 
-      document.getElementById("liveClock").textContent =
-        `${hours}:${minutes}:${seconds}:${frames}`;
+    document
+      .querySelectorAll(".nav-dropdown")
+      .forEach(function (dropdown) {
+
+        const toggle =
+          dropdown.querySelector(
+            ".nav-dropdown-toggle"
+          );
+
+        toggle.addEventListener(
+          "click",
+          function (e) {
+
+            e.stopPropagation();
+
+            const isOpen =
+              dropdown.classList.contains("open");
+
+            document
+              .querySelectorAll(
+                ".nav-dropdown.open"
+              )
+              .forEach(function (d) {
+
+                d.classList.remove("open");
+
+                d.querySelector(
+                  ".nav-dropdown-toggle"
+                ).setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+              });
+
+            if (!isOpen) {
+
+              dropdown.classList.add("open");
+
+              toggle.setAttribute(
+                "aria-expanded",
+                "true"
+              );
+
+            }
+
+          }
+        );
+
+      });
+
+
+    document.addEventListener(
+      "click",
+      function () {
+
+        document
+          .querySelectorAll(
+            ".nav-dropdown.open"
+          )
+          .forEach(function (d) {
+
+            d.classList.remove("open");
+
+            d.querySelector(
+              ".nav-dropdown-toggle"
+            ).setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          });
+
+      }
+    );
+
+
+    /* =========================================================
+       MOBILE DROPDOWN
+    ========================================================= */
+
+    document
+      .querySelectorAll(".mobile-dropdown")
+      .forEach(function (dropdown) {
+
+        const toggle =
+          dropdown.querySelector(
+            ".mobile-dropdown-toggle"
+          );
+
+        toggle.addEventListener(
+          "click",
+          function () {
+
+            const isOpen =
+              dropdown.classList.contains("open");
+
+            dropdown.classList.toggle(
+              "open",
+              !isOpen
+            );
+
+            toggle.setAttribute(
+              "aria-expanded",
+              String(!isOpen)
+            );
+
+          }
+        );
+
+      });
+
+
+    /* =========================================================
+       SHORT FILM — SHOW MORE
+    ========================================================= */
+
+    const showMoreBtn =
+      document.getElementById("showMoreBtn");
+
+    const projects =
+      document.querySelectorAll(".project-item");
+
+    let projectsExpanded = false;
+
+
+    if (showMoreBtn) {
+
+      showMoreBtn.addEventListener(
+        "click",
+        function () {
+
+          projectsExpanded =
+            !projectsExpanded;
+
+          projects.forEach(
+            function (item, index) {
+
+              if (index >= 3) {
+
+                item.classList.toggle(
+                  "hidden",
+                  !projectsExpanded
+                );
+
+              }
+
+            }
+          );
+
+          showMoreBtn.textContent =
+            projectsExpanded
+              ? "Show Less"
+              : "Show More";
+
+        }
+      );
+
     }
+
+
+    /* =========================================================
+       PHOTOGRAPHY — SHOW MORE
+    ========================================================= */
+
+    const photoBtn =
+      document.getElementById(
+        "toggle-photos-btn"
+      );
+
+    const hiddenPhotos =
+      document.querySelectorAll(
+        ".hidden-photo"
+      );
+
+    let photosExpanded = false;
+
+
+    if (photoBtn) {
+
+      photoBtn.addEventListener(
+        "click",
+        function () {
+
+          photosExpanded =
+            !photosExpanded;
+
+          hiddenPhotos.forEach(
+            function (photo) {
+
+              photo.classList.toggle(
+                "hidden",
+                !photosExpanded
+              );
+
+            }
+          );
+
+          photoBtn.textContent =
+            photosExpanded
+              ? "Show Less"
+              : "Show More";
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       GRAPHIC DESIGN — SHOW MORE
+    ========================================================= */
+
+    const designBtn =
+      document.getElementById(
+        "showMoreDesignBtn"
+      );
+
+    const hiddenDesigns =
+      document.querySelectorAll(
+        ".hidden-design"
+      );
+
+    let designsExpanded = false;
+
+
+    if (designBtn) {
+
+      designBtn.addEventListener(
+        "click",
+        function () {
+
+          designsExpanded =
+            !designsExpanded;
+
+          hiddenDesigns.forEach(
+            function (design) {
+
+              design.classList.toggle(
+                "hidden",
+                !designsExpanded
+              );
+
+            }
+          );
+
+          designBtn.textContent =
+            designsExpanded
+              ? "Show Less"
+              : "Show More";
+
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    const revealEls =
+      document.querySelectorAll(
+        ".reveal, .reveal-stagger"
+      );
+
+
+    if ("IntersectionObserver" in window) {
+
+      const io =
+        new IntersectionObserver(
+          function (entries) {
+
+            entries.forEach(
+              function (entry) {
+
+                if (
+                  entry.isIntersecting
+                ) {
+
+                  entry.target.classList.add(
+                    "in"
+                  );
+
+                  io.unobserve(
+                    entry.target
+                  );
+
+                }
+
+              }
+            );
+
+          },
+          {
+            threshold: 0.12
+          }
+        );
+
+
+      revealEls.forEach(
+        function (el) {
+          io.observe(el);
+        }
+      );
+
+    } else {
+
+      revealEls.forEach(
+        function (el) {
+          el.classList.add("in");
+        }
+      );
+
+    }
+
+
+    /* =========================================================
+       LIVE CLOCK
+    ========================================================= */
+
+    function updateClock() {
+
+      const now =
+        new Date();
+
+      const hours =
+        String(
+          now.getHours()
+        ).padStart(2, "0");
+
+      const minutes =
+        String(
+          now.getMinutes()
+        ).padStart(2, "0");
+
+      const seconds =
+        String(
+          now.getSeconds()
+        ).padStart(2, "0");
+
+      const frames =
+        String(
+          Math.floor(
+            now.getMilliseconds() / 40
+          )
+        ).padStart(2, "0");
+
+
+      const clock =
+        document.getElementById(
+          "liveClock"
+        );
+
+
+      if (clock) {
+
+        clock.textContent =
+          `${hours}:${minutes}:${seconds}:${frames}`;
+
+      }
+
+    }
+
 
     updateClock();
-    setInterval(updateClock, 40);
+
+    setInterval(
+      updateClock,
+      40
+    );
+
   </script>
+
 </body>
 
 </html>
